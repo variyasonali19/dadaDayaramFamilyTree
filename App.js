@@ -29,14 +29,14 @@ import {NavigationContainer} from '@react-navigation/native';
 import {DefaultTheme, Provider as PaperProvider} from 'react-native-paper';
 
 // import screens
-import Home from './component/Home';
-import TreeScreen from './component/TreeScreen';
+// import Home from './component/Home';
+// import TreeScreen from './component/TreeScreen';
 import Route from './component/Route';
 // import TreeDataBase from './component/TreeDataBase';
-import SelectUser from './component/SelectUser';
-import TestTree from './component/TestTree';
-import TestAnimation from './component/TestAnimation';
-import BottomNavigatorScreen from './component/BottomNavigatorScreen';
+// import SelectUser from './component/SelectUser';
+// import TestTree from './component/TestTree';
+// import TestAnimation from './component/TestAnimation';
+// import BottomNavigatorScreen from './component/BottomNavigatorScreen';
 
 const theme = {
   ...DefaultTheme,

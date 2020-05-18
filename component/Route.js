@@ -22,12 +22,12 @@ import {IMAGENAME} from '../src/Images';
 import {Avatar, Card} from 'react-native-paper';
 
 // screens
-import SelectUser from './SelectUser';
-import Detailtreefunction from './Detailtreefunction';
+// import SelectUser from "./SelectUser";
+// import Detailtreefunction from "./Detailtreefunction";
 import TestAnimation from './TestAnimation';
 import DetailPerson from './DetailPerson';
 import FeedbackForm from './FeedbackForm';
-import ParentsDetails from './ParentsDetails';
+// import ParentsDetails from "./ParentsDetails";
 import selectMemberScreen from './selectMemberScreen';
 import Appbar from './Appbar';
 
@@ -38,17 +38,26 @@ function Route() {
     <Stack.Navigator
       initialRouteName="selectMemberScreen"
       screenOptions={{
+        headerTitleAlign: 'center',
         headerStyle: {
-          backgroundColor: 'white',
-          opacity: 0.9,
+          // backgroundColor: "white",
+          // opacity: 0.9,
+          // flex: 1,
+          // textAlign: "center",
+          // alignSelf: "center",
         },
-        headerTintColor: 'black',
+        // headerTintColor: "black",
         headerTitleStyle: {
           fontWeight: 'bold',
-          color: 'black',
+          // color: "black",
           fontSize: 28,
+          headerTitleAlign: 'center',
+
+          // alignSelf: "center",
+          // flex: 1,
+          // textAlign: "center",
         },
-        // cardStyle: {backgroundColor: 'transparent'},
+        // cardStyle: { backgroundColor: "transparent" },
         // cardOverlayEnabled: true,
         // cardStyleInterpolator: ({current: {progress}}) => ({
         //   cardStyle: {
@@ -74,17 +83,20 @@ function Route() {
         name="selectMemberScreen"
         component={selectMemberScreen}
         options={{
-          title: '     Dada Dayaram Family',
+          title: 'Dada Dayaram Family',
+          // headerTitleStyle: { alignItems: "center" },
           headerStyle: {
             // flex: 1,
-            backgroundColor: 'white',
+            // backgroundColor: "white",
             // backgroundColor: '#f4511e',
             //  / alignContent: 'center',
-            // alignItems: 'center',
+            // alignItems: "center",
             // marginLeft: 10,
             // marginHorizontal: 15,
             // borderWidth: 12,
+            // textAlign: "center",
           },
+          // headerLeft: () => <View />,
           //   headerLeft: () => (
           //     // <Button
           //     //   onPress={() => alert('This is a button!')}
@@ -150,11 +162,11 @@ function Route() {
         component={FeedbackForm}
         options={{title: 'Give your feedback'}}
       />
-      <Stack.Screen
+      {/* <Stack.Screen
         name="ParentsDetails"
         component={ParentsDetails}
-        options={{title: 'Welcome'}}
-      />
+        options={{ title: "Welcome" }}
+      /> */}
     </Stack.Navigator>
   );
 }

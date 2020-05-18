@@ -23,11 +23,11 @@ export default class FeedbackForm extends Component {
   handleEmail = () => {
     console.log('handle email called');
 
-    const to = ['sweetvish2404@gmail.com']; // string or array of email addresses
+    const to = ['vishal.prajapati6@gmail.com']; // string or array of email addresses
     email(to, {
       // Optional additional arguments
       // cc: ['vishal.prajapati6@gmail.com'], // string or array of email addresses
-      // bcc: 'variya.sonali19@gmail.com', // string or array of email addresses
+      bcc: 'variya.sonali19@gmail.com', // string or array of email addresses
       subject: 'Dayaram Family Tree feedback',
       body: this.state.body,
     }).catch(console.error);
@@ -76,7 +76,7 @@ export default class FeedbackForm extends Component {
               </View>
               <View style={styles.sendBtn}>
                 <Button
-                  // mode="contained"
+                  mode="contained"
                   color="white"
                   onPress={() => this.handleEmail()}>
                   <Text style={{fontSize: 18, fontWeight: 'bold'}}>Submit</Text>

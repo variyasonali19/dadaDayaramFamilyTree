@@ -22,7 +22,7 @@ import TreeView from 'react-native-animated-tree-view';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {IMAGENAME} from '../src/Images';
 import Appbar from './Appbar';
-import ParentsDetails from './ParentsDetails';
+// import ParentsDetails from "./ParentsDetails";
 // const dismissKeyboard = require('dismissKeyboard');
 export default class DetailPerson extends Component {
   constructor(props) {
@@ -555,36 +555,33 @@ export default class DetailPerson extends Component {
             //   Married to {spouce}
             // </Text>
             <Card style={styles.spouseDeatailCard}>
-              <View style={styles.spouseDeatailView}>
-                <TouchableOpacity
-                  onPress={() => this.setState({whoClicked: whoClickedhere})}>
-                  <View style={styles.iamgenTextViewSpouce}>
-                    <View style={{paddingHorizontal: 10}}>
-                      <Avatar.Image size={30} source={imagePathSub} />
-                    </View>
-                    <View style={{width: 300}}>
-                      <Text style={styles.spouseDeatailCardText}>
-                        Married to {spouce}
-                      </Text>
-                    </View>
+              <TouchableOpacity
+                onPress={() => this.setState({whoClicked: whoClickedhere})}>
+                <View style={styles.spouseDeatailImagenTextView}>
+                  <View style={styles.spouseDeatailTextView}>
+                    <Text style={styles.spouseDeatailText}>
+                      Married to {spouce}
+                    </Text>
                   </View>
-                </TouchableOpacity>
-              </View>
+
+                  <View style={styles.spouseDeatailImageView}>
+                    {imagePathSub ? (
+                      <Avatar.Image size={30} source={imagePathSub} />
+                    ) : sex == 'female' ? (
+                      <Avatar.Image size={30} source={IMAGENAME.boy} />
+                    ) : (
+                      <Avatar.Image size={30} source={IMAGENAME.girl} />
+                    )}
+                    {/* <Avatar.Image size={30} source={imagePathSub} /> */}
+                  </View>
+                </View>
+              </TouchableOpacity>
             </Card>
           ) : (
             <Card style={styles.spouseDeatailCard}>
-              <View style={styles.spouseDeatailView}>
-                <View
-                  style={{
-                    // justifyContent: 'flex-end',
-                    // alignItems: 'flex-end',
-                    flexDirection: 'row',
-                    padding: 5,
-                    textAlign: 'center',
-                  }}>
-                  <Text style={styles.spouseDeatailCardText}>
-                    Not Married yet!{'     '}
-                  </Text>
+              <View style={styles.spouseDeatailImagenTextView}>
+                <View style={styles.spouseDeatailTextView}>
+                  <Text style={styles.spouseDeatailText}>Not Married Yet!</Text>
                 </View>
               </View>
             </Card>
@@ -1019,26 +1016,36 @@ const styles = StyleSheet.create({
     // elevation: 15,
     borderRadius: 35,
   },
+  // spouce detail card css
   spouseDeatailCard: {
     // marginLeft: 15,
     // marginRight: 10,
     // alignItems: 'center',
     // borderWidth: 4,
     borderRadius: 35,
-    elevation: 2,
+    // elevation: 2,
     padding: 10,
 
     // paddingBottom: 15,
   },
-  iamgenTextViewSpouce: {flexDirection: 'row'},
-  spouseDeatailView: {
-    // borderWidth: 1,
-
-    padding: 5,
-    // alignItems: 'center',
-    // justifyContent: 'center',
-    // borderWidth: 5,
+  // iamgenTextViewSpouce: { flexDirection: "row" },
+  // spouseDeatailView: {
+  //   // borderWidth: 1,
+  //   flex: 1,
+  //   padding: 5,
+  //   // alignItems: 'center',
+  //   // justifyContent: 'center',
+  //   // borderWidth: 5,
+  // },
+  spouseDeatailImagenTextView: {
+    flex: 1,
+    paddingLeft: 5,
+    alignItems: 'center',
+    flexDirection: 'row',
   },
+  spouseDeatailTextView: {flexWrap: 'wrap', padding: 0},
+  spouseDeatailText: {fontWeight: 'bold', fontFamily: '', fontSize: 18},
+  spouseDeatailImageView: {padding: 5},
   spouseDeatailCardText: {
     fontWeight: 'bold',
     fontSize: 15,

@@ -10,7 +10,7 @@ export const database = [
     level: '1',
     age: 0,
     home: 'Gathaman',
-    spouce: 'No clue',
+    spouce: 'Ambaben',
     spouceAge: 0,
     spouceHome: 'No clue',
     items: [
@@ -377,7 +377,7 @@ export const database = [
             age: 0,
             level: '2.5',
             home: 'Malan',
-            spouce: 'No clue',
+            spouce: 'Shankarbhai',
             spouceAge: 0,
             spouceHome: 'Malan',
             items: [

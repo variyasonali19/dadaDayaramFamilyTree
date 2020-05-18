@@ -11,13 +11,14 @@ import {
   ImageBackground,
   Keyboard,
   Button,
+  Linking,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 // import {Database} from './Database';
 
 // import screens
-import DetailTree from './DetailTree';
+// import DetailTree from "./DetailTree";
 import {IMAGENAME} from '../src/Images';
 import {TouchableRipple, Card, Title, Paragraph} from 'react-native-paper';
 import Appbar from './Appbar';
@@ -103,6 +104,7 @@ export default class selectMemberScreen extends Component {
   };
   getView = () => {
     this.getDatabaseFormat(database[0]);
+    // adding root member in created object
     this.dataInObject.push({
       id: database[0].value,
       name: database[0].name + '(' + database[0].home + ')',
@@ -142,6 +144,11 @@ export default class selectMemberScreen extends Component {
     this.props.navigation.navigate('FeedbackForm');
   };
 
+  loadInBrowser = () => {
+    Linking.openURL(
+      'https://www.youtube.com/channel/UCKM84xsQck3vetilaBI1QZA?view_as=subscriber',
+    ).catch(err => console.error("Couldn't load page", err));
+  };
   render() {
     this.getView();
     return (
@@ -220,7 +227,11 @@ export default class selectMemberScreen extends Component {
                           name: e.name,
                         });
                       }}
-                      containerStyle={{padding: 5, marginTop: 75, elevation: 5}}
+                      containerStyle={{
+                        padding: 5,
+                        marginTop: 75,
+                        elevation: 5,
+                      }}
                       //   onRemoveItem={(item, index) => {
                       //     const items = this.state.selectedItems.filter(
                       //       sitem => sitem.id !== item.id,
@@ -277,24 +288,20 @@ export default class selectMemberScreen extends Component {
                       <Card.Content>
                         <View style={styles.ownerInfoView}>
                           <View style={styles.ownerInfoSubView}>
-                            <Text style={styles.ownerCardText}>
-                              Designer {'  '}
-                            </Text>
+                            <Text style={styles.ownerCardText}>Designer</Text>
                             <Paragraph style={styles.ownerCardSubText}>
                               Vishal
                             </Paragraph>
                           </View>
                           <View style={styles.ownerInfoSubView}>
-                            <Text style={styles.ownerCardText}>
-                              Developer{'   '}
-                            </Text>
+                            <Text style={styles.ownerCardText}>Developer</Text>
 
                             <Paragraph style={styles.ownerCardSubText}>
                               Sonali
                             </Paragraph>
                           </View>
                           <View style={styles.ownerInfoSubView}>
-                            <Text style={styles.ownerCardText}>Concept </Text>
+                            <Text style={styles.ownerCardText}>Concept</Text>
                             <Paragraph style={styles.ownerCardSubText}>
                               Chirag
                             </Paragraph>
@@ -305,15 +312,6 @@ export default class selectMemberScreen extends Component {
                   </View>
                   {/* Bottom Button for Home and Full tree */}
                   <View style={styles.bottomView}>
-                    {/* Home Bottom Button View  */}
-                    <View style={styles.bottomBtnView}>
-                      <Icon
-                        name="home"
-                        size={30}
-                        color="#d9217e"
-                        onPress={() => this.handleNavigatetoHome()}
-                      />
-                    </View>
                     {/* full family tree bottom view */}
                     <View style={styles.bottomBtnView}>
                       <Icon
@@ -321,6 +319,15 @@ export default class selectMemberScreen extends Component {
                         size={30}
                         color="#d9217e"
                         onPress={() => this.handleNavigatetoFamilyTree()}
+                      />
+                    </View>
+                    {/* Home Bottom Button View  */}
+                    <View style={styles.bottomBtnView}>
+                      <Icon
+                        name="question-circle"
+                        size={32}
+                        color="#d9217e"
+                        onPress={() => this.loadInBrowser()}
                       />
                     </View>
                     {/* Feddback bottom view */}
@@ -369,7 +376,12 @@ const styles = StyleSheet.create({
     alignContent: 'space-around',
   },
 
-  ownerCardText: {fontWeight: 'bold', color: 'white', fontSize: 15},
+  ownerCardText: {
+    fontWeight: 'bold',
+    fontFamily: '',
+    color: 'white',
+    fontSize: 15,
+  },
   ownerCardSubText: {color: 'white'},
   bottomView: {
     // backgroundColor: 'white',
