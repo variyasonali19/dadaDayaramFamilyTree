@@ -17,7 +17,9 @@ import {
 import moment from 'moment';
 import {Avatar, Card} from 'react-native-paper';
 // import screen
-import {database} from './DatabasePrajapati';
+// import {database} from './DatabasePrajapati';
+import {database} from './JsonEvaluted';
+
 import TreeView from 'react-native-animated-tree-view';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import {IMAGENAME} from '../src/Images';
@@ -171,7 +173,8 @@ export default class DetailPerson extends Component {
           // console.log('value of item' + JSON.stringify(item));
 
           return (this.selectedPersonVar = item);
-        } else if (item.hasOwnProperty('items')) {
+          // *****************************changed here for db
+        } else if (item.hasOwnProperty('items') && item.items.length > 0) {
           this.getSelectedPersonData(item);
         }
       });
@@ -192,7 +195,11 @@ export default class DetailPerson extends Component {
   };
   getChildrenData = () => {
     if (this.selectedPersonVar) {
-      if (this.selectedPersonVar.items) {
+      //*************** */ changed here due to db
+      if (
+        this.selectedPersonVar.items &&
+        this.selectedPersonVar.items.length > 0
+      ) {
         return this.selectedPersonVar.items.map(x => {
           {
             x.imagePath
@@ -340,7 +347,8 @@ export default class DetailPerson extends Component {
     }
     console.log('levelstr in get pARENTnODE' + levelstr);
     // let levelNum=Number(levelstr);
-    if (data.hasOwnProperty('items')) {
+    // *******************changed here becoz of db
+    if (data.hasOwnProperty('items') && data.items.length > 0) {
       if (levelstr == 0) {
         this.setState({
           parent: {level: 0, name: 'no clue', spouce: 'no clue'},
@@ -437,78 +445,41 @@ export default class DetailPerson extends Component {
         whoClickedhere = 'spouceFemaleClicked';
       }
     }
-    // get date in formate
-    // var a = moment(new Date()).format('L');
-    // var b = moment(dateOfBirth).format('L') ;
-    // var birthday = new Date(dateOfBirth);
-    // // birthday is a date
-    // var ageDifMs = Date.now() - birthday.getTime();
-    // var ageDate = new Date(ageDifMs); // miliseconds from epoch
-    // var age = Math.abs(ageDate.getUTCFullYear() - 1970);
 
-    // let year;
-    // let today = moment(new Date()).format('L');
     console.log('date of birth', typeof dateOfBirth);
 
     let today = moment().format('DD/MM/YYYY');
-    let dateOfBirthMoment = moment().format(dateOfBirth);
-    // let newDate = new Date();
-    console.log('newDate' + dateOfBirthMoment);
-    // let dateOfBirthMoment = moment(dateOfBirth).format('DD/mm/YYYY');
-    console.log('today' + today);
-    // console.log('dateOfBirthMoment' + dateOfBirthMoment);
-    let ages = moment().diff(dateOfBirth, 'years');
-    let ageStr = ' years';
-    if (ages < 1) {
-      ages = moment().diff(dateOfBirth, 'months');
-      ageStr = ' months';
-
-      // console.log('years**' + year);
+    let ages;
+    let ageStr;
+    if (dateOfBirth == null) {
+      ages = 'Not ';
+      ageStr = 'Available';
+    } else {
+      let dateOfBirthMoment = moment().format(dateOfBirth);
+      // let newDate = new Date();
+      console.log('newDate' + dateOfBirthMoment);
+      // let dateOfBirthMoment = moment(dateOfBirth).format('DD/mm/YYYY');
+      console.log('today' + today);
+      // console.log('dateOfBirthMoment' + dateOfBirthMoment);
+      ages = moment().diff(dateOfBirth, 'years');
+      ageStr = ' years';
       if (ages < 1) {
-        ages = moment().diff(dateOfBirth, 'days');
-        ageStr = ' days';
-        // console.log('years##' + year);
-        if (ages == 0) {
-          ages = 'Not known';
-          ageStr = '';
+        ages = moment().diff(dateOfBirth, 'months');
+        ageStr = ' months';
+
+        // console.log('years**' + year);
+        if (ages < 1) {
+          ages = moment().diff(dateOfBirth, 'days');
+          ageStr = ' days';
+          // console.log('years##' + year);
+          if (ages == 0) {
+            ages = 'Not known';
+            ageStr = '';
+          }
         }
       }
     }
-    // console.log('years55' + year);
 
-    // year = moment()
-    //   .format('L')
-    //   .diff(dateOfBirthMoment, 'year');
-    // console.log('outofyear' + year);
-    // if (Number.isNaN(year)) {
-    //   year = moment()
-    //     .format('L')
-    //     .diff(dateOfBirthMoment, 'days');
-
-    //   console.log('inofyear' + year);
-    // }
-
-    // const birthDate = new Date(dateOfBirth);
-    // const difference = Date.now() - birthDate.getTime();
-    // const agem = new Date(difference);
-
-    // let ages = Math.abs(agem.getUTCFullYear() - 1970);
-
-    // var months = moment().diff(dateOfBirth, 'months') % 12;
-    // var days = moment().diff(dateOfBirth, 'days') % 365;
-
-    // console.log(year + ' years ' + months + ' months ' + days + ' days');
-
-    // var years = moment().diff(dateOfBirth, 'year');
-    // b.add(years, 'years');
-
-    // var months = moment().diff(dateOfBirth, 'months');
-    // b.add(months, 'months');
-
-    // var days = moment().diff(dateOfBirth, 'days');
-
-    // console.log(year + ' years');
-    // 8 years 5 months 2 days
     return (
       <View>
         <Card style={styles.personDeatailCard}>
@@ -672,7 +643,10 @@ export default class DetailPerson extends Component {
     );
     //checking selected person has child or not
     if (this.selectedPersonVar.length > 0) {
-      if (this.selectedPersonVar[0].hasOwnProperty('items')) {
+      if (
+        this.selectedPersonVar[0].hasOwnProperty('items') &&
+        this.selectedPersonVar[0].items.length > 0
+      ) {
         return this.selectedPersonVar[0].items.map(item => {
           return (
             <View>
@@ -714,7 +688,7 @@ export default class DetailPerson extends Component {
     return (
       <ImageBackground
         source={IMAGENAME.background}
-        style={{width: '100%', height: '100%', opacity: 1}}>
+        style={{width: '100%', height: '100%', opacity: 0.9}}>
         <ScrollView>
           <View>
             {this.state.showParentNode && this.getParentNode(database[0])}
@@ -1011,7 +985,7 @@ const styles = StyleSheet.create({
     // borderTop: 1,
     // opacity: 0.9,
     // paddingBottom: 15,
-    marginLeft: 15,
+    marginLeft: 10,
     marginRight: 10,
     // elevation: 15,
     borderRadius: 35,
@@ -1066,7 +1040,7 @@ const styles = StyleSheet.create({
   },
   parentInfoCard: {
     // flexDirection: 'row',
-    // borderWidth: 5,
+    borderWidth: 0.5,
     flex: 1,
     backgroundColor: 'white',
     marginLeft: 10,
@@ -1090,7 +1064,7 @@ const styles = StyleSheet.create({
     flex: 1,
     // flexWrap: 'wrap',
     // borderRadius: 2,
-    elevation: 1,
+    // elevation: 1,
   },
   parentInfoText: {
     fontSize: 18,
@@ -1117,7 +1091,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     flexWrap: 'wrap',
     // borderWidth: 5,
-    paddingHorizontal: 15,
+    paddingHorizontal: 10,
     // marginLeft: 10,
     // marginRight: 10,
     // marginBottom: 5,
@@ -1131,13 +1105,13 @@ const styles = StyleSheet.create({
     // backgroundColor: 'white',
     borderRadius: 25,
     width: '50%',
-    // borderWidth: 5,
     // flexWrap: 'wrap',
     padding: 5,
     // flex: 1,
   },
   childrenDetailCard: {
     // backgroundColor: 'purple',
+    borderWidth: 0.5,
 
     // backgroundColor: 'white',
     flex: 1,

@@ -1,8 +1,4 @@
 export const database = [
-  //   {
-  //     name: 'Cheese',
-  //     value: 'cheese-value',
-  //   },
   {
     name: 'Dayarambhai',
     value: '1',

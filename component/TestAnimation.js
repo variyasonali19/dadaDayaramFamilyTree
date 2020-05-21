@@ -12,7 +12,8 @@ import {
 import {Avatar, Card, Chip, icon} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-import {database} from './DatabasePrajapati';
+// import {database} from './DatabasePrajapati';
+import {database} from './JsonEvaluted';
 
 import {IMAGENAME} from '../src/Images';
 import Appbar from './Appbar';

@@ -49,7 +49,7 @@ function Route() {
         // headerTintColor: "black",
         headerTitleStyle: {
           fontWeight: 'bold',
-          // color: "black",
+          // color: '#346c00',
           fontSize: 28,
           headerTitleAlign: 'center',
 

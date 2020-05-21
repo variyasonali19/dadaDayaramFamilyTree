@@ -1,0 +1,106 @@
+name,value,sex,level,home,dateOfBirth,spouceDateOfBirth,spouce,spouceAge,spouceHome,imagePath,imagePathSpouse,parentLevel
+"""Dhanabhai""",2,male,2,Gathaman,null,null,Menaben,0,Gathaman,null,null,1
+"""Hiraben""",3,female,2.1,Chandisar,null,null,Nanjibhai Khemabhai,0,Chandisar,null,null,2
+"""Gangaben""",4,female,2.1.1,No clue,null,null,No clue,0,No clue,null,null,2.1
+"""Amaratbhai""",5,male,2.1.2,Chandisar,null,null,No clue,0,No clue,null,null,2.1
+"""Narmadaben""",6,female,2.1.3,No clue,null,null,No clue,0,No clue,null,null,2.1
+"""Ashokbhai""",7,male,2.1.4,Chandisar,null,null,No clue,0,No clue,null,null,2.1
+"""Ishvabhai""",8,male,2.1.5,Chandisar,null,null,No clue,0,No clue,null,null,2.1
+"""Maheshbhai""",9,male,2.1.6,Chandisar,null,null,No clue,0,No clue,null,null,2.1
+"""Dalajibhai""",10,male,2.2,Gathaman,null,null,Shantaben,0,Chandisar,null,null,2
+"""Yogeshbhai(Natubhai)""",11,male,2.2.1,Palanpur,null,null,Madhuben,0,Lukhasan,null,null,2.2
+"""Maitri(Bittu)""",12,female,2.2.1.1,Palanpur,null,null,No clue,0,No clue,null,null,2.2.1
+"""Dev""",13,male,2.2.1.2,Palanpur,null,null,No clue,0,No clue,null,null,2.2.1
+"""Karan""",14,male,2.2.1.3,Palanpur,null,null,No clue,0,No clue,null,null,2.2.1
+"""Ramilaben""",15,female,2.2.2,Palanpur,null,null,Karasandas,0,Palanpur,null,null,2.2
+"""Anjali""",16,female,2.2.2.1,Palanpur,null,null,,0,No clue,null,null,2.2.2
+"""Pushpaben""",17,female,2.2.3,Palanpur,null,null,Dheerajkumar,0,Zakha,null,null,2.2
+"""Yash""",18,male,2.2.3.1,Palanpur,null,null,No clue,0,No clue,null,null,2.2.3
+"""Jiviben""",19,female,2.3,"Megalvas, Palanpur",null,null,Shankarbhai,0,Palanpur,null,null,2
+"""Pareshbhai""",20,male,2.3.1,Palanpur,null,null,Anitaben,0,Palanpur,null,null,2.3
+"""Surbhi""",104,female,2.3.1.1,Palanpur,1999-06-13T00,null,,0,No clue,null,null,2.3.1
+"""Rishabh""",105,male,2.3.1.2,Palanpur,1999-06-13T00,null,No clue,0,No clue,null,null,2.3.1
+"""Bhartiben""",21,female,2.3.2,Palanpur,null,null,Kanubhai Khadaliya,0,Palanpur,null,null,2.3
+"""Priyanka""",22,female,2.3.2.1,Palanpur,null,null,Abhishek,0,Palanpur,null,null,2.3.2
+"""Parv""",23,male,2.3.2.1.1,Palanpur,null,null,No clue,0,No clue,null,null,2.3.2.1
+"""Atulbhai""",24,male,2.3.3,Palanpur,null,null,Pinkyben,0,Radhanpur,null,null,2.3
+"""Om""",25,male,2.3.3.1,Palanpur,null,null,No clue,0,No clue,null,null,2.3.3
+"""Kavya""",26,female,2.3.3.2,Palanpur,null,null,No clue,0,No clue,null,null,2.3.3
+"""Hirabhai""",27,male,2.4,Gathaman,null,null,Shantaben,0,Madana,null,null,2
+"""Poonam""",28,female,2.4.1,Changvada,null,null,Hiteshkumar,0,Surat,null,null,2.4
+"""Parth""",29,male,2.4.1.1,Surat,null,null,No clue,0,No clue,null,null,2.4.1
+"""Narbhiben""",30,female,2.5,Malan,null,null,Shankarbhai,0,Malan,null,null,2
+"""Kalpeshbhai""",31,male,2.5.1,Malan,null,null,No clue,0,No clue,null,null,2.5
+"""Kuntal""",106,male,2.5.2,Malan,null,null,No clue,0,No clue,null,null,2.5
+"""Bhagvanbhai""",32,male,2.6,Gathaman,null,null,Savitaben,0,Palanpur,null,null,2
+"""Manishaben""",33,female,2.6.1,Jalotra,null,null,Kamleshkumar,0,Jalotra,null,null,2.6
+"""Satish""",34,male,2.6.2,Surat,null,null,No clue,0,No clue,null,null,2.6
+"""Jainil""",35,male,2.6.2.1,Surat,null,null,No clue,0,No clue,null,null,2.6.2
+"""Pradeep""",36,male,2.6.3,Surat,null,null,No clue,0,No clue,null,null,2.6
+"""Divam""",37,male,2.6.3.1,Surat,null,null,No clue,0,No clue,null,null,2.6.3
+"""Hetalben""",38,female,2.6.4,Tavadiya,null,null,No clue,0,Tavadiya,null,null,2.6
+"""Narmadaben""",39,female,2.7,Takarvada,null,null,Virchanddas,0,Takarvada,null,null,2
+"""Sonalben""",40,female,2.7.1,"Mithivav, Palanpur",null,null,Maheshkumar,0,"Mithivav, Palanpur",null,null,2.7
+"""Bhavya""",41,male,2.7.1.1,"Mithivav, Palanpur",null,null,No clue,0,No clue,null,null,2.7.1
+"""Krithi""",42,female,2.7.1.2,"Mithivav, Palanpur",null,null,No clue,0,No clue,null,null,2.7.1
+"""Dineshbhai""",43,male,2.8,Gathaman,null,null,Vimuben,0,Kotda,null,null,2
+"""Kalpanaben""",44,female,2.8.1,Palanpur,null,null,Bipinkumar,0,Meta,null,null,2.8
+"""Het""",45,male,2.8.1.1,Palanpur,null,null,No clue,0,No clue,null,null,2.8.1
+"""Piyush""",46,male,2.8.2,Gathaman,null,null,No clue,0,Meta,null,null,2.8
+"""Chelabhai""",47,male,3,"Kailashnagar, Palanpur",null,null,Shantaben,0,"Megalvas, Palanpur",null,null,1
+"""Devabhai""",48,male,3.1,"Kailashnagar, Palanpur",null,null,Shantaben,0,"Megalvas, Palanpur",null,null,3
+"""Hiteshbhai""",49,male,3.1.1,"Kailashnagar, Palanpur",null,null,Ramilaben,0,Chadotar,null,null,3.1
+"""Tushar(Pintu)""",50,male,3.1.1.1,"Kailashnagar, Palanpur",null,null,No clue,0,No clue,null,null,3.1.1
+"""Daksh""",51,male,3.1.1.2,"Kailashnagar, Palanpur",null,null,No clue,0,No clue,null,null,3.1.1
+"""Minaben""",52,female,3.1.2,Surat,null,null,Anilkumar,0,Chadotar,null,null,3.1
+"""Hinal""",53,male,3.1.2.1,Surat,null,null,No clue,0,No clue,null,null,3.1.2
+"""Varshil""",54,male,3.1.2.2,Surat,null,null,No clue,0,No clue,null,null,3.1.2
+"""Ranjanben""",55,female,3.1.3,Tharad,null,null,Bharatkumar,0,Tharad,null,null,3.1
+"""Krupa""",56,female,3.1.3.1,Tharad,null,null,No clue,0,No clue,null,null,3.1.3
+"""Pranav""",57,male,3.1.3.2,Tharad,null,null,No clue,0,No clue,null,null,3.1.3
+"""Sunilbhai""",58,male,3.1.4,"Kailashnagar, Palanpur",null,null,Vimuben,0,Mahi,null,null,3.1
+"""Nisarg""",59,male,3.1.4.1,"Kailashnagar, Palanpur",null,null,No clue,0,No clue,null,null,3.1.4
+"""Jaydeep""",60,male,3.1.4.2,"Kailashnagar, Palanpur",null,null,No clue,0,No clue,null,null,3.1.4
+"""Gamanbhai""",61,male,4,Gathaman,null,null,Navaben,74,Kant,null,null,1
+"""Diviben""",62,female,4.1,Mumbai,null,null,Khushalbhai,0,Sagrosana,null,null,4
+"""Dineshbhai""",63,male,4.1.1,Mumbai,null,null,Minaben,0,Palanpur,null,null,4.1
+"""Harshil""",64,male,4.1.1.1,Mumbai,null,null,No clue,0,No clue,null,null,4.1.1
+"""Sneha""",65,female,4.1.1.2,Mumbai,null,null,No clue,0,No clue,null,null,4.1.1
+"""Mukeshbhai""",66,male,4.1.2,Mumbai,null,null,Dharaben,0,Laxmipura,null,null,4.1
+"""Hetu""",67,female,4.1.2.1,Mumbai,null,null,No clue,0,No clue,null,null,4.1.2
+"""Ishita""",68,female,4.1.2.2,Mumbai,null,null,No clue,0,No clue,null,null,4.1.2
+"""Anitaben""",69,male,4.1.3,Mumbai,null,null,Pravinkumar,0,Gagalasan,null,null,4.1
+"""Dhruv""",70,male,4.1.3.1,Mumbai,null,null,No clue,0,No clue,null,null,4.1.3
+"""Sujal""",71,male,4.1.3.2,Mumbai,null,null,No clue,0,No clue,null,null,4.1.3
+"""Hargovindbhai""",72,male,4.2,Gathaman,null,null,Nayanaben,0,Sagrosana,null,null,4
+"""Nitinbhai""",73,male,4.2.1,Palanpur,null,null,Archanaben,0,Meta,null,null,4.2
+"""Vanshika""",74,female,4.2.1.1,Palanpur,null,null,No clue,0,No clue,null,null,4.2.1
+"""Nirav""",75,male,4.2.2,Gathaman,null,null,Nikitaben,0,Tenivada,null,null,4.2
+"""Heer""",76,female,4.2.2.1,Gathaman,null,null,No clue,0,No clue,null,null,4.2.2
+"""Pravinaben""",77,female,4.2.3,Palanpur,null,null,Jayeshkumar,0,Majadar,null,null,4.2
+"""Preksha(Pari)""",78,female,4.2.3.1,Palanpur,null,null,,0,,null,null,4.2.3
+"""Neel""",79,male,4.2.3.2,Palanpur,null,null,,0,,null,null,4.2.3
+"""Prabhubhai""",80,male,4.3,Palanpur,1963-01-16T00,1967-01-04T00,Bharatiben,53,"Mithivav, Palanpur",7,8,4
+"""Vipul""",81,male,4.3.1,Canada,1989-12-13T00,1989-08-01T00,Harnisha,31,Junagadh,9,10,4.3
+"""Viha""",82,female,4.3.1.1,Canada,2020-04-24T00,null,,0,,11,null,4.3.1
+"""Vishal""",83,male,4.3.2,Australia,1991-07-09T00,1991-01-19T00,Sonali,29,Palanpur,12,13,4.3
+"""Chirag""",84,male,4.3.3,Rajpipla,1994-01-19T00,1996-05-02T00,Pooja,24,Vadgam,14,15,4.3
+"""Madhuben""",85,female,4.4,Kotda,null,null,Dahyalal,0,Kotda,null,null,4
+"""Divyeshbhai(Deepakbhai)""",86,male,4.4.1,Kotda,null,null,Bhartiben,0,Pirojpura,null,null,4.4
+"""Trusha""",87,female,4.4.1.1,Kotda,null,null,,0,,null,null,4.4.1
+"""Zeel""",88,male,4.4.1.2,Kotda,null,null,,0,,null,null,4.4.1
+"""Bharatbhai""",89,male,4.4.2,Kotda,null,null,Kapilaben,0,Changvada,null,null,4.4
+"""Mahi""",90,female,4.4.2.1,Kotda,null,null,,0,,null,null,4.4.2
+"""Ishani""",91,female,4.4.2.2,Kotda,null,null,,0,,null,null,4.4.2
+"""Binaben""",92,female,4.4.3,Gandhinagar,null,null,Ronakkumar,0,Gandhinagar,null,null,4.4
+"""Vihan""",93,male,4.4.3.1,Gandhinagar,null,null,,0,,null,null,4.4.3
+"""Avaliben""",94,female,5,Gathaman,null,null,No clue,0,Madana,null,null,1
+"""Kanjibhai""",95,male,5.1,Takarvada,null,null,No clue,0,No clue,null,null,5
+"""Kevalbhai""",96,male,5.2,Takarvada,null,null,No clue,0,No clue,null,null,5
+"""Ganeshbhai""",97,male,5.3,Takarvada,null,null,No clue,0,No clue,null,null,5
+"""Menaben""",98,female,5.4,No clue,null,null,No clue,0,No clue,null,null,5
+"""Ambarambhai""",99,male,5.5,Mumbai,null,null,No clue,0,No clue,null,null,5
+"""Jamanaben""",100,fmale,5.6,No clue,null,null,No clue,0,No clue,null,null,5
+"""Chamanbhai""",101,male,5.7,Takarvada,null,null,No clue,0,No clue,null,null,5
+"""Narmadaben""",102,female,5.8,No clue,null,null,No clue,0,No clue,null,null,5
+"""Vasantbhai""",103,male,5.9,Palanpur,null,null,No clue,0,No clue,null,null,5

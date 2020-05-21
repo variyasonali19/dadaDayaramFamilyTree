@@ -22,7 +22,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import {IMAGENAME} from '../src/Images';
 import {TouchableRipple, Card, Title, Paragraph} from 'react-native-paper';
 import Appbar from './Appbar';
-import {database} from './DatabasePrajapati';
+// import {database} from './DatabasePrajapati';
+import {database} from './JsonEvaluted';
+
 import SearchableDropdown from 'react-native-searchable-dropdown';
 export default class selectMemberScreen extends Component {
   constructor(props) {
@@ -317,16 +319,18 @@ export default class selectMemberScreen extends Component {
                       <Icon
                         name="pagelines"
                         size={30}
-                        color="#d9217e"
+                        // color="#d9217e"
+                        color="#346c00"
                         onPress={() => this.handleNavigatetoFamilyTree()}
                       />
                     </View>
-                    {/* Home Bottom Button View  */}
+                    {/* info Bottom Button View  */}
                     <View style={styles.bottomBtnView}>
                       <Icon
                         name="question-circle"
                         size={32}
-                        color="#d9217e"
+                        // color="#d9217e"
+                        color="#346c00"
                         onPress={() => this.loadInBrowser()}
                       />
                     </View>
@@ -335,7 +339,8 @@ export default class selectMemberScreen extends Component {
                       <Icon
                         name="comments"
                         size={30}
-                        color="#d9217e"
+                        // color="#d9217e"
+                        color="#346c00"
                         onPress={() => this.handleNavigatetoFeedback()}
                       />
                     </View>
@@ -386,18 +391,18 @@ const styles = StyleSheet.create({
   bottomView: {
     // backgroundColor: 'white',
     // textAlign: 'center',
-    elevation: 2,
+    // elevation: 2,
     // borderWidth: 1,
     alignItems: 'center',
     flexDirection: 'row',
-    alignContent: 'space-between',
+    // alignContent: 'space-between',
   },
   bottomBtnView: {
     // backgroundColor: 'white',
     // flexDirection: 'row',
     backgroundColor: 'white',
 
-    elevation: 1,
+    // elevation: 1,
     // borderLeftWidth: 0.5,
     // borderRadius: 1,
     flex: 1,
