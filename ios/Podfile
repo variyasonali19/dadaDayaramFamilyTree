@@ -77,6 +77,8 @@ target 'FamilyTree' do
   pod 'glog', :podspec => '../node_modules/react-native/third-party-podspecs/glog.podspec'
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
+  pod 'react-native-fetch-blob', :path => '../node_modules/react-native-fetch-blob'
+
   target 'FamilyTreeTests' do
     inherit! :complete
     # Pods for testing

@@ -13,6 +13,8 @@ import {
   Button,
   Linking,
 } from 'react-native';
+import firebase from 'firebase';
+
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 // import {Database} from './Database';
@@ -23,104 +25,128 @@ import {IMAGENAME} from '../src/Images';
 import {TouchableRipple, Card, Title, Paragraph} from 'react-native-paper';
 import Appbar from './Appbar';
 // import {database} from './DatabasePrajapati';
-import {database} from './JsonEvaluted';
+// import {database} from './JsonEvaluted';
 
 import SearchableDropdown from 'react-native-searchable-dropdown';
 export default class selectMemberScreen extends Component {
   constructor(props) {
     super(props);
+    databaseFirebases = [];
+    this.state = {
+      // dataInObject: [],
+      databaseFirebase: [],
+    };
   }
-  state = {
-    // dataInObject: [],
-  };
+  componentDidMount() {
+    //console.log('componentDidMount called');
+    firebase
+      .database()
+      .ref('/userData')
+      .once('value')
+      .then(snapshot => {
+        this.setState(
+          {
+            databaseFirebase: snapshot.val(),
+          },
+          () => {
+            //console.log(
+            // 'databaseFirebase' + JSON.stringify(this.state.databaseFirebase),
+            // );
+            this.getView();
+          },
+        );
+      });
+  }
   dataInObject = [];
-  //   componentWillMount() {
-  //     // this.getDatabaseFormat(database[0]);
-  //   }
-
   getDatabaseFormat = datas => {
-    console.log('getDatabase called');
+    //console.log('getDatabase called');
     // const dataFormated = [];
     // adding root member
+    //console.log('datas' + JSON.stringify(datas));
+    if (datas) {
+      datas.items.map(item => {
+        let whoclickedMain = '';
+        let whoClickedSpouse = '';
 
-    datas.items.map(item => {
-      let whoclickedMain = '';
-      let whoClickedSpouse = '';
+        if (item.sex == 'male') {
+          whoclickedMain = 'nameMaleClicked';
+          whoClickedSpouse = 'spouceFemaleClicked';
+        } else {
+          whoclickedMain = 'nameFemaleClicked';
+          whoClickedSpouse = 'spouceMaleClicked';
+        }
+        this.dataInObject.push(
+          {
+            id: item.value,
+            name: item.name + '(' + item.home + ')',
+            whoclicked: whoclickedMain,
+            dateOfBirth: item.dateOfBirth,
+            sex: item.sex,
+            age: item.age,
+            level: item.level,
+            home: item.home,
+            spouce: item.spouce,
+            spouceDateOfBirth: item.spouceDateOfBirth,
+            spouceAge: item.spouceAge,
+            spouceHome: item.spouceHome,
+            imagePath: item.imagePath,
+            imagePathSpouse: item.imagePathSpouse,
+          },
+          {
+            id: item.value,
+            name: item.spouce + '(' + item.spouceHome + ')',
+            whoclicked: whoClickedSpouse,
+            dateOfBirth: item.spouceDateOfBirth,
+            sex: item.sex,
+            age: item.age,
+            level: item.level,
+            home: item.home,
+            spouce: item.name,
+            spouceDateOfBirth: item.dateOfBirth,
+            spouceAge: item.spouceAge,
+            spouceHome: item.spouceHome,
+            imagePath: item.imagePath,
+            imagePathSpouse: item.imagePathSpouse,
+          },
+        );
 
-      if (item.sex == 'male') {
-        whoclickedMain = 'nameMaleClicked';
-        whoClickedSpouse = 'spouceFemaleClicked';
-      } else {
-        whoclickedMain = 'nameFemaleClicked';
-        whoClickedSpouse = 'spouceMaleClicked';
-      }
-      this.dataInObject.push(
-        {
-          id: item.value,
-          name: item.name + '(' + item.home + ')',
-          whoclicked: whoclickedMain,
-          dateOfBirth: item.dateOfBirth,
-          sex: item.sex,
-          age: item.age,
-          level: item.level,
-          home: item.home,
-          spouce: item.spouce,
-          spouceDateOfBirth: item.spouceDateOfBirth,
-          spouceAge: item.spouceAge,
-          spouceHome: item.spouceHome,
-          imagePath: item.imagePath,
-          imagePathSpouse: item.imagePathSpouse,
-        },
-        {
-          id: item.value,
-          name: item.spouce + '(' + item.spouceHome + ')',
-          whoclicked: whoClickedSpouse,
-          dateOfBirth: item.spouceDateOfBirth,
-          sex: item.sex,
-          age: item.age,
-          level: item.level,
-          home: item.home,
-          spouce: item.name,
-          spouceDateOfBirth: item.dateOfBirth,
-          spouceAge: item.spouceAge,
-          spouceHome: item.spouceHome,
-          imagePath: item.imagePath,
-          imagePathSpouse: item.imagePathSpouse,
-        },
-      );
+        //   this.setState(prevState => ({
+        //     dataInObject: [...prevState.dataInObject, dataFormated],
+        //   }));
+        //   this.setState({
+        //     dataInObject: [...this.state.dataInObject, dataFormated],
+        //   });
 
-      //   this.setState(prevState => ({
-      //     dataInObject: [...prevState.dataInObject, dataFormated],
-      //   }));
-      //   this.setState({
-      //     dataInObject: [...this.state.dataInObject, dataFormated],
-      //   });
-
-      if (item.items) {
-        this.getDatabaseFormat(item);
-      }
-    });
-    // console.log('valueof dataFormated+' + JSON.stringify(this.dataInObject));
+        if (item.items) {
+          this.getDatabaseFormat(item);
+        }
+      });
+    }
+    // //console.log('valueof dataFormated+' + JSON.stringify(this.dataInObject));
 
     // return dataFormated;
   };
   getView = () => {
-    this.getDatabaseFormat(database[0]);
+    this.getDatabaseFormat(this.state.databaseFirebase);
     // adding root member in created object
     this.dataInObject.push({
-      id: database[0].value,
-      name: database[0].name + '(' + database[0].home + ')',
+      id: this.state.databaseFirebase.value,
+      name:
+        this.state.databaseFirebase.name +
+        '(' +
+        this.state.databaseFirebase.home +
+        ')',
       whoclicked: 'nameMaleClicked',
-      sex: database[0].sex,
-      dateOfBirth: database[0].dateOfBirth,
-      age: database[0].age,
-      level: database[0].level,
-      home: database[0].home,
-      spouce: database[0].spouce,
-      spouceAge: database[0].spouceAge,
-      spouceHome: database[0].spouceHome,
-      imagePath: database[0].imagePath,
-      imagePathSpouse: database[0].imagePathSpouse,
+      sex: this.state.databaseFirebase.sex,
+      dateOfBirth: this.state.databaseFirebase.dateOfBirth,
+      age: this.state.databaseFirebase.age,
+      level: this.state.databaseFirebase.level,
+      home: this.state.databaseFirebase.home,
+      spouce: this.state.databaseFirebase.spouce,
+      spouceAge: this.state.databaseFirebase.spouceAge,
+      spouceHome: this.state.databaseFirebase.spouceHome,
+      imagePath: this.state.databaseFirebase.imagePath,
+      imagePathSpouse: this.state.databaseFirebase.imagePathSpouse,
     });
 
     if (this.dataInObject) {
@@ -136,11 +162,11 @@ export default class selectMemberScreen extends Component {
     }
   };
   //   handling navigation on bootom buttons
-  handleNavigatetoHome = () => {
-    this.props.navigation.navigate('selectMemberScreen');
-  };
+
   handleNavigatetoFamilyTree = () => {
-    this.props.navigation.navigate('TestAnimation');
+    this.props.navigation.navigate('TestAnimation', {
+      databaseNavigated: this.state.databaseFirebase,
+    });
   };
   handleNavigatetoFeedback = () => {
     this.props.navigation.navigate('FeedbackForm');
@@ -152,7 +178,6 @@ export default class selectMemberScreen extends Component {
     ).catch(err => console.error("Couldn't load page", err));
   };
   render() {
-    this.getView();
     return (
       <KeyboardAvoidingView
         behavior={Platform.OS === 'ios' ? 'padding' : null}
@@ -215,18 +240,20 @@ export default class selectMemberScreen extends Component {
                         // items.push(item);
                         // this.setState({selectedItems: items});
                         // eventTO.name = eventTO.name.split('(')[0];
-                        console.log(
-                          '*************************value of e' +
-                            JSON.stringify(e),
-                        );
-                        console.log(
-                          '*************************value of selectedObj' +
-                            JSON.stringify(selectedObj),
-                        );
+                        //console.log(
+                        // '*************************value of e' +
+                        // JSON.stringify(e),
+                        // );
+                        //console.log(
+                        // '*************************value of selectedObj' +
+                        // JSON.stringify(selectedObj),
+                        // );
 
                         this.props.navigation.navigate('DetailPerson', {
                           item: selectedObj,
                           name: e.name,
+
+                          databaseNavigated: this.state.databaseFirebase,
                         });
                       }}
                       containerStyle={{

@@ -34,8 +34,10 @@ import {DefaultTheme, Provider as PaperProvider} from 'react-native-paper';
 import Route from './component/Route';
 import JsonToCsv from './component/JsonToCsv';
 import CsvToJson from './component/CsvToJson';
+import storage from '@react-native-firebase/storage';
+// import FireBaseLogin from './component/FireBaseLogin';
 
-// import TreeDataBase from './component/TreeDataBase';
+import AsyncImage from './component/AsyncImage';
 // import SelectUser from './component/SelectUser';
 // import TestTree from './component/TestTree';
 // import TestAnimation from './component/TestAnimation';
@@ -44,6 +46,7 @@ import CsvToJson from './component/CsvToJson';
 const theme = {
   ...DefaultTheme,
   roundness: 2,
+
   colors: {
     ...DefaultTheme.colors,
     primary: '#3498db',
@@ -53,8 +56,17 @@ const theme = {
 
 const App: () => React$Node = () => {
   // useEffect(() => {
-  //   SplashScreen.hide();
+  //   // SplashScreen.hide();
+  //   // firebase.auth().signInAnonymously();
+  //   this.getImageUrl();
   // });
+  // const getImageUrl = async () => {
+  //   const url = await storage()
+  //     .ref('images/profile-1.png')
+  //     .getDownloadURL();
+  // };
+
+  // const reference = firebase.storage().ref('/imagesUser/80.png');
   console.disableYellowBox = true;
   return (
     <PaperProvider theme={theme}>
@@ -63,6 +75,8 @@ const App: () => React$Node = () => {
       <NavigationContainer>
         <Route />
       </NavigationContainer>
+      {/* <AsyncImage /> */}
+      {/* <FireBaseLogin /> */}
       {/* <JsonToCsv /> */}
       {/* <CsvToJson /> */}
     </PaperProvider>

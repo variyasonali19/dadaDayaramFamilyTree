@@ -13,21 +13,25 @@ import {Avatar, Card, Chip, icon} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 // import {database} from './DatabasePrajapati';
-import {database} from './JsonEvaluted';
+// import {database} from './JsonEvaluted';
 
 import {IMAGENAME} from '../src/Images';
 import Appbar from './Appbar';
 export default class TestAnimation extends Component {
-  // //   handling navigation on bootom buttons
-  // handleNavigatetoHome = () => {
-  //   this.props.navigation.navigate('selectMemberScreen');
-  // };
-  // handleNavigatetoFamilyTree = () => {
-  //   this.props.navigation.navigate('TestAnimation');
-  // };
-  // handleNavigatetoFeedback = () => {
-  //   this.props.navigation.navigate('FeedbackForm');
-  // };
+  state = {
+    databasArrayForm: [],
+  };
+  componentDidMount() {
+    console.log('componentDidMount called');
+    this.formatedArrayDatabase();
+  }
+  formatedArrayDatabase = () => {
+    let databaseArray = [];
+    databaseArray.push(this.props.route.params.databaseNavigated);
+    this.setState({
+      databasArrayForm: databaseArray,
+    });
+  };
   render() {
     return (
       <ImageBackground
@@ -38,7 +42,7 @@ export default class TestAnimation extends Component {
             {/* <Appbar title={'Dada Dayaram Family Tree'} /> */}
 
             <TreeView
-              data={database}
+              data={this.state.databasArrayForm}
               containerStyle={{}}
               textStyle={styles.treeText}
               // rightImage
@@ -72,6 +76,7 @@ export default class TestAnimation extends Component {
                 this.props.navigation.navigate('DetailPerson', {
                   item: e,
                   name: e.name,
+                  databaseNavigated: this.props.route.params.databaseNavigated,
                 });
               }}
               textStyle={styles.treeText}
