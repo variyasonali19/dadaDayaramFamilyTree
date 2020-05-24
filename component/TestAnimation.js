@@ -43,7 +43,10 @@ export default class TestAnimation extends Component {
 
             <TreeView
               data={this.state.databasArrayForm}
-              containerStyle={{}}
+              containerStyle={{
+                backgroundColor: 'white',
+                opacity: 0.8,
+              }}
               textStyle={styles.treeText}
               // rightImage
 
@@ -80,7 +83,11 @@ export default class TestAnimation extends Component {
                 });
               }}
               textStyle={styles.treeText}
-              listContainerStyle={{}}
+              listContainerStyle={{
+                borderWidth: 0.2,
+
+                borderRadius: 25,
+              }}
               rightImage={IMAGENAME.ArrowIcon}
               rightImageStyle={{
                 height: 30,

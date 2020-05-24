@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -24,6 +24,10 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import {Avatar, Card} from 'react-native-paper';
+import Icon from 'react-native-vector-icons/FontAwesome';
+import {IMAGENAME} from './src/Images';
+
 // import SplashScreen from 'react-native-splash-screen';
 import {NavigationContainer} from '@react-navigation/native';
 import {DefaultTheme, Provider as PaperProvider} from 'react-native-paper';
@@ -55,26 +59,47 @@ const theme = {
 };
 
 const App: () => React$Node = () => {
+  const [show, setShow] = useState(true);
   // useEffect(() => {
-  //   // SplashScreen.hide();
-  //   // firebase.auth().signInAnonymously();
-  //   this.getImageUrl();
-  // });
-  // const getImageUrl = async () => {
-  //   const url = await storage()
-  //     .ref('images/profile-1.png')
-  //     .getDownloadURL();
-  // };
+  //   console.log('useEffect called');
+  //   setTimeout(console.log('Icon'), 10000);
+  // }, []);
 
-  // const reference = firebase.storage().ref('/imagesUser/80.png');
+  function myFunction() {
+    setTimeout(alertFunc, 1000);
+  }
+  function alertFunc() {
+    // alert('Hello!');
+    setShow(false);
+  }
+  // const showIcon = () => {
+  //   console.log('useEffect called');
+  //   // setShow(false);
+  // };
   console.disableYellowBox = true;
   return (
     <PaperProvider theme={theme}>
+      {show && myFunction()}
+      {show && (
+        <View style={styles.container}>
+          <View style={styles.iconNImageView}>
+            <View style={styles.iconImage}>
+              <Avatar.Image size={80} source={IMAGENAME.appIcon} />
+            </View>
+            <View style={styles.textView}>
+              <Text style={styles.text}>DadaDayaram </Text>
+              <Text style={{fontSize: 18, fontFamily: ''}}>Family Tree</Text>
+            </View>
+          </View>
+        </View>
+      )}
       {/* <StatusBar barStyle="dark-content"/> */}
       {/* {Platform.OS === 'ios' && <StatusBar barStyle="light-content" />} */}
-      <NavigationContainer>
-        <Route />
-      </NavigationContainer>
+      {!show && (
+        <NavigationContainer>
+          <Route />
+        </NavigationContainer>
+      )}
       {/* <AsyncImage /> */}
       {/* <FireBaseLogin /> */}
       {/* <JsonToCsv /> */}
@@ -98,6 +123,19 @@ const styles = StyleSheet.create({
   body: {
     backgroundColor: Colors.white,
   },
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  iconNImageView: {
+    padding: 'auto',
+    // borderWidth: 5,
+  },
+  iconImage: {alignItems: 'center'},
+  textView: {padding: 'auto', marginTop: 10, alignItems: 'center'},
+  text: {fontWeight: 'bold', fontSize: 28, fontFamily: ''},
   sectionContainer: {
     marginTop: 32,
     paddingHorizontal: 24,

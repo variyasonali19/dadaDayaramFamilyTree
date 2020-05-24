@@ -56,6 +56,7 @@ export default class DetailPerson extends Component {
     // this.getSelectedPersonData(database[0]);
 
     Keyboard.dismiss();
+    // this.getImages();
     this.getSelectedPersonData(this.props.route.params.databaseNavigated);
     this.getParentNode(this.props.route.params.databaseNavigated);
     // on Load of this page setting father and mother tag based on passed route from select memeber screen
@@ -136,35 +137,7 @@ export default class DetailPerson extends Component {
     let level = Math.floor(propLevel);
     return level;
   };
-  // getPersonDetail = data => {
-  //   ////console.log(' getPersonDetail called');
-  //   let Persondata = [];
 
-  //   Persondata = data.items.filter(x => {
-  //     if (this.Persondt.length == 0) {
-  //       if (x.level !== this.props.route.params.item.level) {
-  //         if (x.hasOwnProperty('items')) {
-  //           this.getPersonDetail(x);
-  //         }
-  //       } else {
-  //         Persondt = x;
-  //         return x;
-  //       }
-  //     } else {
-  //       return this.Persondt;
-  //     }
-  //   });
-  //   return this.Persondt;
-  //   //console.log('Personlllllllldata' + JSON.stringify(Persondata));
-  //   // let databaseStr = JSON.stringify(database);
-  //   // //console.log('database in string' + databaseStr);
-
-  //   // (paramNameStr = this.props.route.params.item.name.toString()),
-  //   //   (paramLevelStr = this.props.route.params.item.level.toString()),
-  //   //   (findPersondata = databaseStr.split(paramNameStr, paramLevelStr));
-  //   // //console.log('findPersondata in string' + findPersondata);
-  //   // // //console.log('totalItem' + totalItem);
-  // };
   getSelectedPersonData = data => {
     if (data.level == this.props.route.params.item.level) {
       return (this.selectedPersonVar = data);
@@ -183,19 +156,12 @@ export default class DetailPerson extends Component {
     this.setState({
       showGetSelectedPersonData: false,
     });
-    // if (this.selectedPersonVar.length != 0) {
-    // }
-    // console.log(
-    //   'value of selectedPersonVar' + JSON.stringify(this.selectedPersonVar),
-    // );
-    // return this.selectedPersonVar;
-    // console.log(
-    //   'value of this.state.selectedPerson' +
-    //     JSON.stringify(this.state.selectedPerson),
-    // );
   };
   getChildrenData = () => {
     if (this.selectedPersonVar) {
+      console.log(
+        'this.selectedPersonVar' + JSON.stringify(this.selectedPersonVar),
+      );
       //*************** */ changed here due to db
       if (
         this.selectedPersonVar.items &&
@@ -204,39 +170,51 @@ export default class DetailPerson extends Component {
         return this.selectedPersonVar.items.map(x => {
           {
             x.imagePath
-              ? (this.imagePathsForChild = x.imagePath)
+              ? (this.imagePathsForChild =
+                  'https://firebasestorage.googleapis.com/v0/b/rnfamilytreedada.appspot.com/o/imagesUser%2F' +
+                  x.imagePath +
+                  '?alt=media&token=067d9add-e6f8-4181-b67b-fa6777102127')
               : x.sex == 'female'
               ? (this.imagePathsForChild = IMAGENAME.girl)
               : (this.imagePathsForChild = IMAGENAME.boy);
           }
+          console.log('sex is' + x.sex);
           return (
-            <View style={styles.childrenDetailView}>
-              <TouchableOpacity
-                onPress={() => {
-                  if ((x.sex = 'male')) {
-                    this.handleNavigation('nameMaleClicked', x);
-                  } else {
-                    this.handleNavigation('nameFemaleClicked', x);
-                  }
-                }}>
-                <Card style={styles.childrenDetailCard}>
-                  <View style={styles.childrenDetailsubView}>
-                    <View style={styles.childrenDetailsubViewImage}>
-                      <Avatar.Image
-                        size={30}
-                        source={this.imagePathsForChild}
-                      />
-                    </View>
-                    <View style={styles.childrenDetailsubViewText}>
-                      <Text style={{fontWeight: 'bold', fontSize: 18}}>
-                        {x.name}
-                        {'  '}
-                      </Text>
-                    </View>
-                  </View>
-                </Card>
-              </TouchableOpacity>
-            </View>
+            // <View style={styles.childrenDetailView}>
+            <TouchableOpacity
+              onPress={() => {
+                if (x.sex == 'male') {
+                  this.handleNavigation('nameMaleClicked', x);
+                } else {
+                  this.handleNavigation('nameFemaleClicked', x);
+                }
+              }}>
+              {/* <Card style={styles.childrenDetailCard}> */}
+              <View style={styles.childrenDetailsubView}>
+                <View style={styles.childrenDetailsubViewImage}>
+                  {x.imagePath ? (
+                    <Avatar.Image
+                      size={30}
+                      source={{uri: this.imagePathsForChild}}
+                    />
+                  ) : (
+                    <Avatar.Image size={30} source={this.imagePathsForChild} />
+                  )}
+                </View>
+                <View style={styles.childrenDetailsubViewText}>
+                  <Text
+                    style={{
+                      fontWeight: 'bold',
+                      fontFamily: '',
+                      fontSize: 18,
+                    }}>
+                    {x.name}
+                  </Text>
+                </View>
+              </View>
+              {/* </Card> */}
+            </TouchableOpacity>
+            // </View>
           );
         });
       } else {
@@ -261,39 +239,7 @@ export default class DetailPerson extends Component {
       }
     }
   };
-  getSubTree = () => {
-    // // seting value of  fatherTags and motherTag
-    // if (
-    //   this.props.route.params.item.whoclicked == 'spouceF+emaleClicked' ||
-    //   'spouceMaleClicked'
-    // ) {
-    //   this.setState({
-    //     FatherTag: 'Father In-law',
-    //     MotherTag: 'Mother In-law',
-    //   });
-    // } else {
-    //   this.setState({
-    //     FatherTag: 'Father',
-    //     MotherTag: 'Mother',
-    //   });
-    // }
-    //console.log('getSubTree called');
-    let level = this.getLevelOfParent();
-    let totalItems = this.props.route.params.databaseNavigated.items.filter(
-      item => {
-        //console.log('*' + item.level);
-        //console.log('**' + level);
-        if (item.level == level) {
-          return item;
-        }
-      },
-    );
-    this.setState({
-      totalItem: totalItems,
-      show: false,
-    });
-    //console.log('totalItem' + JSON.stringify(totalItems));
-  };
+
   //   getFather's deatail
   getParentsDetail = () => {
     let length = this.props.route.params.item.level.length;
@@ -328,12 +274,6 @@ export default class DetailPerson extends Component {
   // have to pass who clicked key here so that will set state whoclicked on the base of passed value
   // and when getView will called it will chose proper case..
   getParentNode = data => {
-    // if (this.props.route.params.item.whoclicked) {
-    //   this.setState({
-    //     whoClicked: this.props.route.params.item.whoclicked,
-    //   });
-    // }
-
     let levelstr;
 
     if (this.props.route.params.item.level.length == 1) {
@@ -349,7 +289,7 @@ export default class DetailPerson extends Component {
         this.props.route.params.item.level.length - 2,
       );
     }
-    console.log('levelstr in get pARENTnODE' + levelstr);
+    //console.log('levelstr in get pARENTnODE' + levelstr);
     // let levelNum=Number(levelstr);
     // *******************changed here becoz of db
     if (data.hasOwnProperty('items') && data.items.length > 0) {
@@ -371,11 +311,11 @@ export default class DetailPerson extends Component {
       if (data.level == levelstr) {
         let pers;
         pers.push(data);
-        console.log('pers' + pers);
+        //console.log('pers' + pers);
       }
     }
 
-    console.log('***************this.state.parent' + this.state.parent);
+    //console.log('***************this.state.parent' + this.state.parent);
 
     this.setState({
       showParentNode: false,
@@ -429,7 +369,7 @@ export default class DetailPerson extends Component {
   ) => {
     // this.getSelectedPersonData(database[0], level);
     // let imagePath = require(imagepathtext);
-    console.log('date of birth', dateOfBirth);
+    //console.log('date of birth', dateOfBirth);
     let imageId = this.props.route.params.item.value;
 
     let whoClickedhere;
@@ -450,7 +390,7 @@ export default class DetailPerson extends Component {
       }
     }
 
-    console.log('date of birth', typeof dateOfBirth);
+    //console.log('date of birth', typeof dateOfBirth);
 
     let today = moment().format('DD/MM/YYYY');
     let ages;
@@ -461,10 +401,10 @@ export default class DetailPerson extends Component {
     } else {
       let dateOfBirthMoment = moment().format(dateOfBirth);
       // let newDate = new Date();
-      console.log('newDate' + dateOfBirthMoment);
+      //console.log('newDate' + dateOfBirthMoment);
       // let dateOfBirthMoment = moment(dateOfBirth).format('DD/mm/YYYY');
-      console.log('today' + today);
-      // console.log('dateOfBirthMoment' + dateOfBirthMoment);
+      //console.log('today' + today);
+      // //console.log('dateOfBirthMoment' + dateOfBirthMoment);
       ages = moment().diff(dateOfBirth, 'years');
       ageStr = ' years';
       if (ages < 1) {
@@ -494,10 +434,10 @@ export default class DetailPerson extends Component {
               justifyContent: 'space-around',
               // alignItems: 'center',
             }}>
-            {console.log(
+            {/* {console.log(
               'props  coming in detail screen',
               JSON.stringify(this.props),
-            )}
+            )} */}
             <View style={{flex: 2, marginLeft: 15, marginTop: 5}}>
               <Text style={styles.personDeatailName}>{name}</Text>
               <View style={{marginTop: 10}}>
@@ -517,7 +457,15 @@ export default class DetailPerson extends Component {
               {/* <Avatar.Image size={120} source={require(imagePath)} /> */}
               {/* <Image style={styles.image} source={IMAGENAME.Sonali} /> */}
               {imagePathMain ? (
-                <Avatar.Image size={120} source={imagePathMain} />
+                <Avatar.Image
+                  size={120}
+                  source={{
+                    uri:
+                      'https://firebasestorage.googleapis.com/v0/b/rnfamilytreedada.appspot.com/o/imagesUser%2F' +
+                      imagePathMain +
+                      '?alt=media&token=067d9add-e6f8-4181-b67b-fa6777102127',
+                  }}
+                />
               ) : sex == 'female' ? (
                 <Avatar.Image size={120} source={IMAGENAME.girl} />
               ) : (
@@ -541,7 +489,15 @@ export default class DetailPerson extends Component {
 
                   <View style={styles.spouseDeatailImageView}>
                     {imagePathSub ? (
-                      <Avatar.Image size={30} source={imagePathSub} />
+                      <Avatar.Image
+                        size={30}
+                        source={{
+                          uri:
+                            'https://firebasestorage.googleapis.com/v0/b/rnfamilytreedada.appspot.com/o/imagesUser%2F' +
+                            imagePathSub +
+                            '?alt=media&token=067d9add-e6f8-4181-b67b-fa6777102127',
+                        }}
+                      />
                     ) : sex == 'female' ? (
                       <Avatar.Image size={30} source={IMAGENAME.boy} />
                     ) : (
@@ -699,7 +655,7 @@ export default class DetailPerson extends Component {
               this.getParentNode(this.props.route.params.databaseNavigated)}
 
             {/* {this.state.showChildrenData && this.getChildrenData(database[0])} */}
-            {this.state.show && this.getSubTree()}
+            {/* {this.state.show && this.getSubTree()} */}
             {/* {this.getSelectedPersonData} getSelectedPersonData */}
             {/* {this.state.getParentsDetail && this.getParentsDetail()} */}
             {/* <Appbar title={` ${this.props.route.params.item.name}'s Family`} /> */}
@@ -737,7 +693,12 @@ export default class DetailPerson extends Component {
                                 {this.state.parent.imagePathSpouse ? (
                                   <Avatar.Image
                                     size={30}
-                                    source={this.state.parent.imagePathSpouse}
+                                    source={{
+                                      uri:
+                                        'https://firebasestorage.googleapis.com/v0/b/rnfamilytreedada.appspot.com/o/imagesUser%2F' +
+                                        this.state.parent.imagePathSpouse +
+                                        '?alt=media&token=067d9add-e6f8-4181-b67b-fa6777102127',
+                                    }}
                                   />
                                 ) : (
                                   <Avatar.Image
@@ -773,7 +734,12 @@ export default class DetailPerson extends Component {
                                 {this.state.parent.imagePath ? (
                                   <Avatar.Image
                                     size={35}
-                                    source={this.state.parent.imagePath}
+                                    source={{
+                                      uri:
+                                        'https://firebasestorage.googleapis.com/v0/b/rnfamilytreedada.appspot.com/o/imagesUser%2F' +
+                                        this.state.parent.imagePath +
+                                        '?alt=media&token=067d9add-e6f8-4181-b67b-fa6777102127',
+                                    }}
                                   />
                                 ) : (
                                   <Avatar.Image
@@ -813,7 +779,12 @@ export default class DetailPerson extends Component {
                                 {this.state.parent.imagePath ? (
                                   <Avatar.Image
                                     size={30}
-                                    source={this.state.parent.imagePath}
+                                    source={{
+                                      uri:
+                                        'https://firebasestorage.googleapis.com/v0/b/rnfamilytreedada.appspot.com/o/imagesUser%2F' +
+                                        this.state.parent.imagePath +
+                                        '?alt=media&token=067d9add-e6f8-4181-b67b-fa6777102127',
+                                    }}
                                   />
                                 ) : (
                                   <Avatar.Image
@@ -849,7 +820,12 @@ export default class DetailPerson extends Component {
                                 {this.state.parent.imagePathSpouse ? (
                                   <Avatar.Image
                                     size={30}
-                                    source={this.state.parent.imagePathSpouse}
+                                    source={{
+                                      uri:
+                                        'https://firebasestorage.googleapis.com/v0/b/rnfamilytreedada.appspot.com/o/imagesUser%2F' +
+                                        this.state.parent.imagePathSpouse +
+                                        '?alt=media&token=067d9add-e6f8-4181-b67b-fa6777102127',
+                                    }}
                                   />
                                 ) : (
                                   <Avatar.Image
@@ -875,32 +851,6 @@ export default class DetailPerson extends Component {
               <View style={styles.ChildrenTitleBar}>
                 <Text style={styles.ChildrenTitleBarText}>Children</Text>
               </View>
-              {/* Forefather family tree  */}
-              {/* <View style={styles.treeView}>
-                {this.state.totalItem && (
-                  <TreeView
-                    data={this.state.totalItem}
-                    // displayNodeName={this.state.name}
-                    textStyle={styles.treeText}
-                    containerStyle={{}}
-                    //rightImage={<Icon name="heart" size={5} color="#900" />}
-                    // onClick={e => {
-                    //   this.props.navigation.navigate('DetailPerson', {
-                    //     item: e,
-                    //   });
-                    // }}
-                    // displayNodeName="Jitendrakumar"
-                    // childrenNodeName
-                    leftImage={IMAGENAME.flower}
-                    leftImageStyle={{
-                      marginLeft: 15,
-                      height: 40,
-                      width: 40,
-                      borderRadius: 400 / 2,
-                    }}
-                  />
-                )}
-              </View> */}
             </View>
           </View>
           {/* show Childrendata */}
@@ -1085,65 +1035,86 @@ const styles = StyleSheet.create({
   touchableOpacity: {marginBottom: 0},
   ChildrenTotalView: {
     // flex: 1,
-    padding: 0,
+    // padding: 0,
     // alignContent: 'center',
     // borderWidth: 5,
   },
   ChildrenTotalSubView: {
     // backgroundColor: 'black',
     // alignContent: 'center',
-    // flex: 1,
+    flex: 1,
     flexDirection: 'row',
     flexWrap: 'wrap',
     // borderWidth: 5,
-    paddingHorizontal: 10,
+    // borderWidth: 2,
+    // paddingHorizontal: 5,
     // marginLeft: 10,
     // marginRight: 10,
     // marginBottom: 5,
-    // justifyContent: 'space-between',
+
+    justifyContent: 'center',
   },
 
   childrenDetailView: {
-    // backgroundColor: 'pink',
+    backgroundColor: 'white',
     // flex: 0.5,
-    marginBottom: 2,
+    borderWidth: 0.8,
+    // marginBottom: 2,
     // backgroundColor: 'white',
+    // borderR
     borderRadius: 25,
-    width: '50%',
-    // flexWrap: 'wrap',
+    // width: '50%',
+    flexWrap: 'wrap',
+    // paddingRight: 45,
     padding: 5,
+    // marginRight: 15,
     // flex: 1,
   },
   childrenDetailCard: {
-    // backgroundColor: 'purple',
-    borderWidth: 0.5,
-
+    elevation: 0,
+    backgroundColor: 'transparent',
+    // borderWidth: 0.5,
+    // width: 'auto',
     // backgroundColor: 'white',
-    flex: 1,
+    // flex: 1,
     // padding: 5,
-    // borderWidth: 0.8,
+    // borderWidth: 2,
     // elevation: 1,
-    // width: 150,
+    // width: 100,
     // marginLeft: 5,
-    padding: 5,
+    // paddingRight: 85,
     // borderWidth: 5,
-    flexWrap: 'wrap',
-    marginBottom: 5,
-    borderRadius: 10,
+    // flexWrap: 'wrap',
+    // marginBottom: 5,
+    // borderRadius: 10,
   },
   childrenDetailsubView: {
-    // padding: 5,
+    padding: 5,
     flexDirection: 'row',
     // justifyContent: 'center',
-    // borderWidth: 2,
+    // width: '100%',
+    // flex: 1,
+    flexWrap: 'wrap',
+    width: 160,
+    // marginRight: 20,
+    borderWidth: 0.8,
+    marginBottom: 5,
+    borderRadius: 15,
+    // paddingHorizontal: 10,
     // alignContent: 'center',
     // textAlignVertical: 'center',
     // alignItems: 'center',
-    // backgroundColor: 'red',
+    marginHorizontal: 5,
+    backgroundColor: 'white',
     paddingVertical: 5,
   },
   childrenDetailsubViewImage: {marginHorizontal: 5},
-  childrenDetailsubViewText: {fontFamily: 'lucida grande'},
+  childrenDetailsubViewText: {
+    // paddingRight: 86,
+    // flex: 1,
+    flexWrap: 'wrap',
+    fontFamily: 'lucida grande',
+  },
   treeView: {
     marginLeft: 10,
 

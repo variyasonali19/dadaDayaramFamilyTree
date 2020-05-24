@@ -35,10 +35,20 @@ export default class selectMemberScreen extends Component {
     this.state = {
       // dataInObject: [],
       databaseFirebase: [],
+      databaseFirebaseLinks: '',
     };
   }
   componentDidMount() {
     //console.log('componentDidMount called');
+    firebase
+      .database()
+      .ref('/basicLinks')
+      .once('value')
+      .then(snapshot => {
+        this.setState({
+          databaseFirebaseLinks: snapshot.val(),
+        });
+      });
     firebase
       .database()
       .ref('/userData')
@@ -171,11 +181,16 @@ export default class selectMemberScreen extends Component {
   handleNavigatetoFeedback = () => {
     this.props.navigation.navigate('FeedbackForm');
   };
+  handleNavigatetoGoogleForm = () => {
+    Linking.openURL(this.state.databaseFirebaseLinks.FormLink).catch(err =>
+      console.error("Couldn't load page", err),
+    );
+  };
 
   loadInBrowser = () => {
-    Linking.openURL(
-      'https://www.youtube.com/channel/UCKM84xsQck3vetilaBI1QZA?view_as=subscriber',
-    ).catch(err => console.error("Couldn't load page", err));
+    Linking.openURL(this.state.databaseFirebaseLinks.HelpLink).catch(err =>
+      console.error("Couldn't load page", err),
+    );
   };
   render() {
     return (
@@ -268,8 +283,8 @@ export default class selectMemberScreen extends Component {
                       //     this.setState({selectedItems: items});
                       //   }}
                       itemStyle={{
-                        padding: 8,
-                        marginTop: 2,
+                        padding: 5,
+                        margin: 2,
                         backgroundColor: 'white',
                         borderColor: '#bbb',
                         borderWidth: 1,
@@ -277,13 +292,13 @@ export default class selectMemberScreen extends Component {
                         borderRadius: 50,
                       }}
                       itemTextStyle={{
-                        color: 'black',
+                        // color: 'black',
                         fontSize: 20,
                         fontWeight: 'bold',
                         paddingLeft: 15,
                       }}
                       itemsContainerStyle={{
-                        maxHeight: 142,
+                        maxHeight: 130,
                       }}
                       items={this.dataInObject}
                       //   defaultIndex={2}
@@ -292,7 +307,7 @@ export default class selectMemberScreen extends Component {
                         placeholder: 'Search for family member',
                         underlineColorAndroid: 'transparent',
                         style: {
-                          color: 'black',
+                          // color: 'black',
                           elevation: 10,
                           backgroundColor: 'white',
                           fontSize: 22,
@@ -351,16 +366,17 @@ export default class selectMemberScreen extends Component {
                         onPress={() => this.handleNavigatetoFamilyTree()}
                       />
                     </View>
-                    {/* info Bottom Button View  */}
+                    {/* edit form  */}
                     <View style={styles.bottomBtnView}>
                       <Icon
-                        name="question-circle"
-                        size={32}
+                        name="plus-circle"
+                        size={30}
                         // color="#d9217e"
                         color="#346c00"
-                        onPress={() => this.loadInBrowser()}
+                        onPress={() => this.handleNavigatetoGoogleForm()}
                       />
                     </View>
+
                     {/* Feddback bottom view */}
                     <View style={styles.bottomBtnView}>
                       <Icon
@@ -369,6 +385,16 @@ export default class selectMemberScreen extends Component {
                         // color="#d9217e"
                         color="#346c00"
                         onPress={() => this.handleNavigatetoFeedback()}
+                      />
+                    </View>
+                    {/* info Bottom Button View  */}
+                    <View style={styles.bottomBtnView}>
+                      <Icon
+                        name="question-circle"
+                        size={30}
+                        // color="#d9217e"
+                        color="#346c00"
+                        onPress={() => this.loadInBrowser()}
                       />
                     </View>
                   </View>

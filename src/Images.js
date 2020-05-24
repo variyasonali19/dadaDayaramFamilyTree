@@ -1,6 +1,7 @@
 export const IMAGENAME = {
   // Sonali: require('./images/Sonali.png'),
   // CoupleIcon: require('./icons/couple.png'),
+  appIcon: require('./icons/appIconGreen.png'),
   ArrowIcon: require('./icons/arrowDown.png'),
   // FamilyIcon: require('./icons/family.png'),
   boy: require('./images/boys.png'),
