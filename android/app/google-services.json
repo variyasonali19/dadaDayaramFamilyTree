@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "25373954328",
+    "firebase_url": "https://authdadadayaramft.firebaseio.com",
+    "project_id": "authdadadayaramft",
+    "storage_bucket": "authdadadayaramft.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:25373954328:android:d722f8e00fc4dc989d0e6d",
+        "android_client_info": {
+          "package_name": "com.familytree"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "25373954328-pfhumh6vjlqvgedr7l3lr63fbfaqvdq2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyV0hL6maSZW1EWN2t3rMmaYGxd9L1xUA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "25373954328-pfhumh6vjlqvgedr7l3lr63fbfaqvdq2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
